@@ -3,9 +3,8 @@ package main
 import (
   "github.com/wpxiong/beargo/log"
   "github.com/wpxiong/beargo/controller"
-  "github.com/wpxiong/beargo/route"
+  "github.com/wpxiong/beargo/appcontext"
   "fmt"
-  "net/http"
 )
 
 func init() {
@@ -16,7 +15,6 @@ type IndexControl struct {
   controller.Controller
 }
 
-func (*IndexControl) Index(rti *route.RouteInfo){
-  var w http.ResponseWriter = *rti.Writer.HttpResponseWriter
-  fmt.Fprintf(w,"Edit")
+func (*IndexControl) Index(ctx *appcontext.AppContext){
+  fmt.Fprint(*(ctx.Writer.HttpResponseWriter),"Test App")
 }

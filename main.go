@@ -10,7 +10,8 @@ import (
 func main() {
    log.InitLog()
    runtime.GOMAXPROCS(runtime.NumCPU())
-   var appCon appcontext.AppContext = appcontext.AppContext{ Config : "" , Port : 9001 }
+   config := appcontext.AppConfigContext{Port :9001}
+   var appCon appcontext.AppContext = appcontext.AppContext{ ConfigContext :  &config}
    app := webapp.New(&appCon)
    indexCtrl := &IndexControl{}
    app.AddRoute("/test/<pam:[0-9]+>",indexCtrl,"Index")

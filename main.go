@@ -7,6 +7,7 @@ import (
   "runtime"
 )
 
+
 func main() {
    log.InitLogWithLevel("Debug")
    runtime.GOMAXPROCS(runtime.NumCPU())
@@ -15,7 +16,7 @@ func main() {
    app := webapp.New(&appCon)
    indexCtrl := &IndexControl{}
    sampleCtrl := &SampleControl{}
-   app.AddRoute("/test/<pam:[0-9]+>",indexCtrl,"Index")
-   app.AddRoute("/sample/<pam:[0-9]+>",sampleCtrl,"Index")
+   app.AddRoute("/test/<pam:[0-9]+>",indexCtrl,"Index",Indexform{})
+   app.AddRoute("/sample/<pam:[0-9]+>",sampleCtrl,"Index",Sampleform{})
    app.Start()
 }

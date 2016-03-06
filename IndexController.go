@@ -12,7 +12,7 @@ func init() {
 }
 
 type  Indexform struct{
-  xiong string
+  Pam int
 }
 
 type IndexControl struct {

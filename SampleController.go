@@ -12,7 +12,11 @@ func init() {
 }
 
 type  Sampleform struct{
-  Name string
+  Pam  int8
+  Pam2  uint8
+  Pam3  float32
+  Test  string
+  Xiong  []string
 }
 
 
@@ -21,7 +25,7 @@ type SampleControl struct {
 }
 
 func (*SampleControl) Index(ctx *appcontext.AppContext,form interface{}){
-  
-  
+  sampleForm := form.(*Sampleform)
+  log.Debug(sampleForm)
   fmt.Fprint(*(ctx.Writer.HttpResponseWriter),"Sample Web")
 }

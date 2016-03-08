@@ -41,11 +41,24 @@ func initializeStruct(t reflect.Type, v reflect.Value) {
 }
 
 
+type Member struct {
+    Id     int
+    Name   string
+    Groups []Group
+}
 
+type Group struct {
+    Code   string
+    Name   string
+    Leader bool
+}
+
+func (g Group) Display() string {
+    return fmt.Sprintf("***%s***", g.Name)
+}
 
 func main() {
    log.InitLogWithLevel("Debug")
-  
     t := reflect.TypeOf(Config{})
     v := reflect.New(t)
     initializeStruct(t, v.Elem())

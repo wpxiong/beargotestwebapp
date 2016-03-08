@@ -56,3 +56,10 @@ func (*SampleControl) Index(ctx *appcontext.AppContext,form interface{}){
  
   fmt.Fprint(*(ctx.Writer.HttpResponseWriter),"Sample Web")
 }
+
+func (*SampleControl) Create(ctx *appcontext.AppContext,form interface{}){
+  sampleForm := form.(*Sampleform)
+  log.Debug(sampleForm.Address)
+ 
+  fmt.Fprint(*(ctx.Writer.HttpResponseWriter),"Create Sample Web")
+}

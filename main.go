@@ -73,7 +73,12 @@ func main() {
    app := webapp.New(&appCon)
    indexCtrl := &IndexControl{}
    sampleCtrl := &SampleControl{}
+<<<<<<< HEAD
    app.AddRoute("/<name:.*>/<password:[0-9]+>",indexCtrl,"Index",Indexform{})
+=======
+   app.AddRoute("/test/<pam:[0-9]+>",indexCtrl,"Index",Indexform{})
+   app.AddRoute("/auth/api",indexCtrl,"Index",Indexform{})
+>>>>>>> 41fef12e8c9753d2226b34db0458aecf0a0ebe60
    app.AddRoute("/sample/<pam:int>",sampleCtrl,"Index",Sampleform{})
    app.AddRoute("/sample/<pam:int>/create",sampleCtrl,"Create",Sampleform{})
    app.Start()

@@ -52,14 +52,10 @@ type SampleControl struct {
 
 func (*SampleControl) Index(ctx *appcontext.AppContext,form interface{}){
   sampleForm := form.(*Sampleform)
-  log.Debug(sampleForm.Address)
- 
-  fmt.Fprint(*(ctx.Writer.HttpResponseWriter),"Sample Web")
+  fmt.Fprint(*(ctx.Writer.HttpResponseWriter),sampleForm)
 }
 
 func (*SampleControl) Create(ctx *appcontext.AppContext,form interface{}){
-  sampleForm := form.(*Sampleform)
-  log.Debug(sampleForm.Address)
- 
-  fmt.Fprint(*(ctx.Writer.HttpResponseWriter),"Create Sample Web")
+  sampleForm := form.(*Sampleform) 
+  fmt.Fprint(*(ctx.Writer.HttpResponseWriter),sampleForm)
 }

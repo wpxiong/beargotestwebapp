@@ -58,7 +58,10 @@ func (g Group) Display() string {
 }
 
 func main() {
-   log.InitLogWithLevel("Debug")
+    log.InitLogWithLevel("Debug")
+    
+    funcmap := InitConfig()
+    
     t := reflect.TypeOf(Config{})
     v := reflect.New(t)
     initializeStruct(t, v.Elem())
@@ -70,15 +73,11 @@ func main() {
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}
    var appCon appcontext.AppContext = appcontext.AppContext{ ConfigContext :  &config}
-   app := webapp.New(&appCon)
+   app := webapp.New(&appCon,funcmap)
    indexCtrl := &IndexControl{}
    sampleCtrl := &SampleControl{}
-<<<<<<< HEAD
+
    app.AddRoute("/<name:.*>/<password:[0-9]+>",indexCtrl,"Index",Indexform{})
-=======
-   app.AddRoute("/test/<pam:[0-9]+>",indexCtrl,"Index",Indexform{})
-   app.AddRoute("/auth/api",indexCtrl,"Index",Indexform{})
->>>>>>> 41fef12e8c9753d2226b34db0458aecf0a0ebe60
    app.AddRoute("/sample/<pam:int>",sampleCtrl,"Index",Sampleform{})
    app.AddRoute("/sample/<pam:int>/create",sampleCtrl,"Create",Sampleform{})
    app.Start()

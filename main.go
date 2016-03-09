@@ -5,7 +5,6 @@ import (
   "github.com/wpxiong/beargo/webapp"
   "github.com/wpxiong/beargo/appcontext"
   "runtime"
-  "reflect"
 )
 
 

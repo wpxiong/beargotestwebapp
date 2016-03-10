@@ -21,9 +21,8 @@ func main() {
    
    indexCtrl := &IndexControl{}
    sampleCtrl := &SampleControl{}
-   app.AddRoute("/<name:.*>/<password:[0-9]+>",indexCtrl,"Index",Indexform{})
-   app.AddRoute("/sample/<pam:int>",sampleCtrl,"Index",Sampleform{})
-   app.AddRoute("/sample/<pam:int>/create",sampleCtrl,"Create",Sampleform{})
+   app.AddAutoRoute("/<name:.*>/<password:[0-9]+>",indexCtrl,Indexform{})
+   app.AddAutoRouteWithViewPath("/sample/<pam:int>/",sampleCtrl,Sampleform{},"/sampletest")
    
    app.Start()
 }

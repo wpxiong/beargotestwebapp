@@ -4,7 +4,6 @@ import (
   "github.com/wpxiong/beargo/log"
   "github.com/wpxiong/beargo/controller"
   "github.com/wpxiong/beargo/appcontext"
-  "fmt"
 )
 
 func init() {
@@ -52,10 +51,10 @@ type SampleControl struct {
 
 func (*SampleControl) Index(ctx *appcontext.AppContext,form interface{}){
   sampleForm := form.(*Sampleform)
-  fmt.Fprint(*(ctx.Writer.HttpResponseWriter),sampleForm)
+  log.Debug(sampleForm)
 }
 
 func (*SampleControl) Create(ctx *appcontext.AppContext,form interface{}){
   sampleForm := form.(*Sampleform) 
-  fmt.Fprint(*(ctx.Writer.HttpResponseWriter),sampleForm)
+  log.Debug(sampleForm)
 }

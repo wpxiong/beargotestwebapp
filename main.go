@@ -11,13 +11,14 @@ import (
 
 func main() {
    log.InitLogWithLevel("Debug")
-   funcmap := InitConfig()
+   configMap := InitConfig()
+   
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}
    
    var appCon appcontext.AppContext = appcontext.AppContext{ ConfigContext :  &config}
    
-   app := webapp.New(&appCon,funcmap)
+   app := webapp.New(&appCon,configMap)
    
    indexCtrl := &IndexControl{}
    sampleCtrl := &SampleControl{}

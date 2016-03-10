@@ -21,7 +21,7 @@ type IndexControl struct {
 
 func (*IndexControl) Before(ctx *appcontext.AppContext,form interface{}) bool {
      log.Debug("Test Before")
-     return false
+     return true
 }
 
 func (*IndexControl) Index(ctx *appcontext.AppContext,form interface{}){

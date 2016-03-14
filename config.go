@@ -1,7 +1,7 @@
 package main
 
 import (
-  "github.com/wpxiong/beargo/filter"
+  "github.com/wpxiong/beargo/interceptor"
   "github.com/wpxiong/beargo/session"
   "github.com/wpxiong/beargo/webapp"
   "github.com/wpxiong/beargo/render/template"
@@ -9,14 +9,14 @@ import (
 
 func InitConfig() webapp.ConfigMap{
   config := webapp.ConfigMap{}
-  config.Filterfuncmap = InitFiltrConfig()
+  config.InterceptoFuncmap = InitFiltrConfig()
   config.Sessionprovidermap = InitSessionProviderConfig()
   config.Templatefuncmap = InitTemplatefuncConfig()
   return config
 }
 
-func InitFiltrConfig() map[string]filter.FilterFunc {
-  funcMap := make(map[string]filter.FilterFunc)
+func InitFiltrConfig() map[string]interceptor.InterceptorFunc {
+  funcMap := make(map[string]interceptor.InterceptorFunc)
   return funcMap
 }
 

@@ -32,7 +32,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 html {
 	font-size: 75%;
-	filter: expression(document.execCommand("BackgroundImageCache", false, true));
+	interceptor: expression(document.execCommand("BackgroundImageCache", false, true));
 }
 
 img {

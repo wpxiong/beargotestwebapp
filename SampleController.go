@@ -4,6 +4,7 @@ import (
   "github.com/wpxiong/beargo/log"
   "github.com/wpxiong/beargo/controller"
   "github.com/wpxiong/beargo/appcontext"
+  "github.com/wpxiong/beargo/render"
 )
 
 func init() {
@@ -55,6 +56,8 @@ func (*SampleControl) Index(ctx *appcontext.AppContext,form interface{}){
 }
 
 func (*SampleControl) Create(ctx *appcontext.AppContext,form interface{}){
-  sampleForm := form.(*Sampleform) 
+  sampleForm := form.(*Sampleform)
   log.Debug(sampleForm)
+  log.Debug("Redirect To sample")
+  render.RedirectTo(ctx,"/sample/1981?xiong=api&xiong=234")
 }

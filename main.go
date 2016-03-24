@@ -5,6 +5,7 @@ import (
   "github.com/wpxiong/beargo/webapp"
   "github.com/wpxiong/beargo/appcontext"
   "github.com/wpxiong/beargo/moudle"
+<<<<<<< HEAD
   "time"
   "runtime"
 )
@@ -22,6 +23,16 @@ type UserInfo struct {
   Test     complex64 `default_value:"12.34,11.78"`
   Add      []AddInfo
   CreateTime  time.Time 
+=======
+  "runtime"
+)
+
+type UserInfo struct {
+  moudle.DBTable
+  UserName string
+  UserAge  int8
+  UserSex  bool
+>>>>>>> origin/master
 }
 
 
@@ -31,10 +42,14 @@ func main() {
    
    moudleInstance :=  moudle.CreateModuleInstance(moudle.MYSQL,"test","tcp(localhost:3306)","","")
    
+<<<<<<< HEAD
    moudleInstance.AddTable(UserInfo{})
    moudleInstance.AddTable(AddInfo{})
    
    moudleInstance.InitialDB(true)
+=======
+   moudleInstance.AddTable(&UserInfo{})
+>>>>>>> origin/master
    
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}

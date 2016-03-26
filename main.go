@@ -9,10 +9,25 @@ import (
 )
 
 type UserInfo struct {
-  moudle.DBTable
-  UserName string
+  Id  int `id:"true"   auto_increment:"true"`
+  UserName string  `length:"128"`
   UserAge  int8
   UserSex  bool
+  Goup    []GroupInfo `relation_type:"onetomany"  referenced_column_name:"userid"`
+}
+
+type GroupInfo struct {
+  UserId  int  `id:"true"`
+  ClassId int  `id:"true"`
+  Class ClassInfo  `relation_type:"manytoone" column_name:"classid"  referenced_column_name:"classid"`
+  User  UserInfo  `relation_type:"manytoone"   column_name:"userid" referenced_column_name:"id"`
+}
+
+type ClassInfo struct {
+  ClassName string `length:"128"`
+  ClassId int `id:"true"   auto_increment:"true"`
+  AddressInfo  string `length:"128"  notnull:"true"`
+  Goup    []GroupInfo `relation_type:"onetomany"  referenced_column_name:"classid"`
 }
 
 
@@ -22,7 +37,7 @@ func main() {
    
    moudleInstance :=  moudle.CreateModuleInstance(moudle.MYSQL,"test","tcp(localhost:3306)","","")
    
-   moudleInstance.AddTable(&UserInfo{})
+   moudleInstance.AddTable(UserInfo{})
    
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}

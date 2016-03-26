@@ -13,7 +13,7 @@ type UserInfo struct {
   UserName string  `length:"128"`
   UserAge  int8
   UserSex  bool
-  Goup    []GroupInfo `relation_type:"onetomany"  referenced_column_name:"userid"`
+  Goup    []GroupInfo `relation_type:"onetomany" column_name:"id" referenced_column_name:"userid"`
 }
 
 type GroupInfo struct {
@@ -27,7 +27,7 @@ type ClassInfo struct {
   ClassName string `length:"128"`
   ClassId int `id:"true"   auto_increment:"true"`
   AddressInfo  string `length:"128"  notnull:"true"`
-  Goup    []GroupInfo `relation_type:"onetomany"  referenced_column_name:"classid"`
+  Goup    []GroupInfo `relation_type:"onetomany"  column_name:"classid" referenced_column_name:"classid"`
 }
 
 
@@ -35,10 +35,12 @@ func main() {
    log.InitLogWithLevel("Debug")
    configMap := InitConfig()
    
-   moudleInstance :=  moudle.CreateModuleInstance(moudle.MYSQL,"test","tcp(localhost:3306)","","")
+   moudleInstance :=  moudle.CreateModuleInstance(moudle.MYSQL,"test","tcp(localhost:3306)","root","")
    
    moudleInstance.AddTable(UserInfo{})
-   
+   moudleInstance.AddTable(ClassInfo{})
+   moudleInstance.AddTable(GroupInfo{})
+   moudleInstance.InitialDB(true)
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}
    

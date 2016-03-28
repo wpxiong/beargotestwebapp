@@ -58,6 +58,9 @@ func main() {
    moudleInstance.AddTable(AddressInformation{})
 
    moudleInstance.InitialDB(true)
+   
+   moudleInstance.Query(UserInfo{})
+   
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}
    

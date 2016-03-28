@@ -5,15 +5,10 @@ import (
   "github.com/wpxiong/beargo/webapp"
   "github.com/wpxiong/beargo/appcontext"
   "github.com/wpxiong/beargo/moudle"
-<<<<<<< HEAD
   "time"
   "runtime"
 )
 
-type AddInfo struct {
-  Address string  `length:"12"`
-  Id      int `id:"true"`
-}
 
 type UserInfo struct {
   Id      int `id:"true"`
@@ -21,18 +16,30 @@ type UserInfo struct {
   UserAge  uint16  `default_value:"54"`
   UserSex  bool  `default_value:"true"`
   Test     complex64 `default_value:"12.34,11.78"`
-  Add      []AddInfo
   CreateTime  time.Time 
-=======
-  "runtime"
+  Goup    []GroupInfo `relation_type:"onetomany" column_name:"id" referenced_column_name:"userid"`
 )
 
 type UserInfo struct {
-  moudle.DBTable
-  UserName string
+  Id  int `id:"true"   auto_increment:"true"`
+  UserName string  `length:"128"`
   UserAge  int8
   UserSex  bool
->>>>>>> origin/master
+  
+}
+
+type GroupInfo struct {
+  UserId  int  `id:"true"`
+  ClassId int  `id:"true"`
+  Class ClassInfo  `relation_type:"manytoone" column_name:"classid"  referenced_column_name:"classid"`
+  User  UserInfo  `relation_type:"manytoone"   column_name:"userid" referenced_column_name:"id"`
+}
+
+type ClassInfo struct {
+  ClassName string `length:"128"`
+  ClassId int `id:"true"   auto_increment:"true"`
+  AddressInfo  string `length:"128"  notnull:"true"`
+  Goup    []GroupInfo `relation_type:"onetomany"  column_name:"classid" referenced_column_name:"classid"`
 }
 
 
@@ -40,17 +47,12 @@ func main() {
    log.InitLogWithLevel("Debug")
    configMap := InitConfig()
    
-   moudleInstance :=  moudle.CreateModuleInstance(moudle.MYSQL,"test","tcp(localhost:3306)","","")
+   moudleInstance :=  moudle.CreateModuleInstance(moudle.MYSQL,"test","tcp(localhost:3306)","","") 
    
-<<<<<<< HEAD
    moudleInstance.AddTable(UserInfo{})
-   moudleInstance.AddTable(AddInfo{})
-   
+   moudleInstance.AddTable(ClassInfo{})
+   moudleInstance.AddTable(GroupInfo{})
    moudleInstance.InitialDB(true)
-=======
-   moudleInstance.AddTable(&UserInfo{})
->>>>>>> origin/master
-   
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}
    

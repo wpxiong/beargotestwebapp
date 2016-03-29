@@ -60,7 +60,7 @@ func main() {
    moudleInstance.InitialDB(true)
    
    moudleInstance.Query(UserInfo{},moudle.LAZY,[]string{"Goup"})
-   
+
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}
    

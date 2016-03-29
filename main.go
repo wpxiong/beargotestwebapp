@@ -59,8 +59,8 @@ func main() {
 
    moudleInstance.InitialDB(true)
    
-   moudleInstance.Query(UserInfo{},moudle.LAZY,[]string{"Goup"})
-
+   var info moudle.QueryInfo  = moudleInstance.Query(UserInfo{},moudle.EAGER,[]string{"Goup","Address"})
+   info.GetResultList()
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}
    

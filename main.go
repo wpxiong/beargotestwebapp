@@ -59,9 +59,16 @@ func main() {
 
    moudleInstance.InitialDB(true)
    moudleInstance.Insert(AddressInformation{Addressid:1,Userid:12,AddressName:"tokyo shibuya"})
-   userinfo := UserInfo{Addressid:1,UserName:"xiong",UserAge:22,UserSex:true,Test:complex(23.4,56.7),CreateTime:time.Now()}
-   
+   userinfo := UserInfo{Addressid:1,UserName:"xiong",UserAge:22,UserSex:true,Test:complex(23.4,56.7),CreateTime:time.Now(),Id:1}
+    moudleInstance.Insert(AddressInformation{Addressid:2,Userid:12,AddressName:"tokyo shibuya"})
    moudleInstance.Insert(userinfo)
+   userinfo.UserName = "baili"
+   userinfo.Addressid = 2
+   userinfo.Id = 2
+   moudleInstance.Insert(userinfo)
+   
+   moudleInstance.Insert(ClassInfo{ClassName:"class1",Address:"address1"})
+   moudleInstance.Insert(ClassInfo{ClassName:"class2",Address:"address2"})
    
    userinfo.UserAge = 45
    userinfo.UserSex = false
@@ -70,6 +77,11 @@ func main() {
    userinfo.UserAge = 46
    userinfo.Test = complex(23.4,563.7)
    moudleInstance.UpdateWithField(userinfo,[]string{"Test"})
+   
+   moudleInstance.Insert(GroupInfo{UserId:1,ClassId:1})
+   moudleInstance.Insert(GroupInfo{UserId:1,ClassId:2})
+   moudleInstance.Insert(GroupInfo{UserId:2,ClassId:1})
+   moudleInstance.Insert(GroupInfo{UserId:2,ClassId:2})
    
    var info moudle.QueryInfo  = moudleInstance.Query(UserInfo{},moudle.EAGER,[]string{"Goup","Address"})
    info.GetResultList()

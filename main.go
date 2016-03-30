@@ -58,6 +58,8 @@ func main() {
    moudleInstance.AddTable(AddressInformation{})
 
    moudleInstance.InitialDB(true)
+   moudleInstance.Insert(AddressInformation{Addressid:1,Userid:12,AddressName:"tokyo shibuya"})
+   moudleInstance.Insert(UserInfo{Addressid:1,UserName:"xiong",UserAge:22,UserSex:true,Test:complex(23.4,56.7),CreateTime:time.Now()})
    
    var info moudle.QueryInfo  = moudleInstance.Query(UserInfo{},moudle.EAGER,[]string{"Goup","Address"})
    info.GetResultList()

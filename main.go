@@ -59,7 +59,17 @@ func main() {
 
    moudleInstance.InitialDB(true)
    moudleInstance.Insert(AddressInformation{Addressid:1,Userid:12,AddressName:"tokyo shibuya"})
-   moudleInstance.Insert(UserInfo{Addressid:1,UserName:"xiong",UserAge:22,UserSex:true,Test:complex(23.4,56.7),CreateTime:time.Now()})
+   userinfo := UserInfo{Addressid:1,UserName:"xiong",UserAge:22,UserSex:true,Test:complex(23.4,56.7),CreateTime:time.Now()}
+   
+   moudleInstance.Insert(userinfo)
+   
+   userinfo.UserAge = 45
+   userinfo.UserSex = false
+   userinfo.UserName = "test"
+   moudleInstance.Update(userinfo)
+   userinfo.UserAge = 46
+   userinfo.Test = complex(23.4,563.7)
+   moudleInstance.UpdateWithField(userinfo,[]string{"Test"})
    
    var info moudle.QueryInfo  = moudleInstance.Query(UserInfo{},moudle.EAGER,[]string{"Goup","Address"})
    info.GetResultList()

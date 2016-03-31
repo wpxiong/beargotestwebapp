@@ -57,8 +57,8 @@ func main() {
    moudleInstance.AddTable(GroupInfo{})
    moudleInstance.AddTable(AddressInformation{})
 
-   moudleInstance.InitialDB(true)
-   moudleInstance.Insert(AddressInformation{Addressid:1,Userid:12,AddressName:"tokyo shibuya"})
+   moudleInstance.InitialDB(false)
+   /*moudleInstance.Insert(AddressInformation{Addressid:1,Userid:12,AddressName:"tokyo shibuya"})
    userinfo := UserInfo{Addressid:1,UserName:"xiong",UserAge:22,UserSex:true,Test:complex(23.4,56.7),CreateTime:time.Now(),Id:1}
     moudleInstance.Insert(AddressInformation{Addressid:2,Userid:12,AddressName:"tokyo shibuya"})
    moudleInstance.Insert(userinfo)
@@ -81,11 +81,15 @@ func main() {
    moudleInstance.Insert(GroupInfo{UserId:1,ClassId:1})
    moudleInstance.Insert(GroupInfo{UserId:1,ClassId:2})
    moudleInstance.Insert(GroupInfo{UserId:2,ClassId:1})
-   moudleInstance.Insert(GroupInfo{UserId:2,ClassId:2})
+   moudleInstance.Insert(GroupInfo{UserId:2,ClassId:2}) */
    
    var info moudle.QueryInfo  = moudleInstance.Query(UserInfo{},moudle.EAGER,[]string{"Goup","Address"})
    //var info moudle.QueryInfo  = moudleInstance.SimpleQuery(GroupInfo{})
-   info.GetResultList()
+   list := info.GetResultList()
+   for _,val := range list {
+      usr := val.(UserInfo)
+      log.Debug(usr)
+   }
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}
    

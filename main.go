@@ -84,6 +84,7 @@ func main() {
    moudleInstance.Insert(GroupInfo{UserId:2,ClassId:2})
    
    var info moudle.QueryInfo  = moudleInstance.Query(UserInfo{},moudle.EAGER,[]string{"Goup","Address"})
+   //var info moudle.QueryInfo  = moudleInstance.SimpleQuery(GroupInfo{})
    info.GetResultList()
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}

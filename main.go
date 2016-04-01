@@ -75,10 +75,12 @@ func main() {
    userinfo.UserAge = 45
    userinfo.UserSex = false
    userinfo.UserName = "test"
-   moudleInstance.Update(userinfo).SaveExecute()
+   moudleInstance.Update(userinfo)
    userinfo.UserAge = 46
    userinfo.Test = complex(23.4,563.7)
-   moudleInstance.UpdateWithField(userinfo,[]string{"Test"}).SaveExecute()
+   
+   moudleInstance.UpdateWithField(userinfo,[]string{"Test"})
+   moudleInstance.UpdateWithWhere(userinfo,[]string{"UserSex"}).WhereOr([]string{"Id","UserName"}).SaveExecute()
    
    moudleInstance.Insert(GroupInfo{UserId:1,ClassId:1}).InsertExecute()
    moudleInstance.Insert(GroupInfo{UserId:1,ClassId:2}).InsertExecute()

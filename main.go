@@ -92,6 +92,13 @@ func main() {
       usr := val.(UserInfo)
       log.Debug(usr)
    }
+   
+   moudleInstance.Delete(GroupInfo{UserId:2,ClassId:2})
+   pam := make([]interface{},2)
+   pam[0] = 1
+   pam[1] = 2
+   moudleInstance.DeleteWithSql("delete from groupinfo where userid = ? and classid = ?" , pam)
+   
    runtime.GOMAXPROCS(runtime.NumCPU())
    config := appcontext.AppConfigContext{Port :9001,ConfigPath : "./setting.conf"}
    

@@ -64,7 +64,6 @@ func main() {
    userinfo := UserInfo{Addressid:1,UserName:"xiong",UserAge:22,UserSex:true,Test:complex(23.4,56.7),CreateTime:time.Now(),Id:1}
    strbyte := "hello, world!"
    userinfo.TestData = []byte(strbyte)
-   
    moudleInstance.Insert(AddressInformation{Addressid:2,Userid:12,AddressName:"tokyo shibuya"}).InsertExecute()
    moudleInstance.Insert(userinfo).InsertExecute()
    userinfo.UserName = "baili"

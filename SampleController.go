@@ -50,6 +50,12 @@ type SampleControl struct {
   controller.Controller
 }
 
+func (this *SampleControl) Before(ctx *appcontext.AppContext,form interface{}) bool {
+     render.RedirectTo(ctx,"/index")
+     return false
+
+}
+
 func (*SampleControl) Index(ctx *appcontext.AppContext,form interface{}){
   sampleForm := form.(*Sampleform)
   log.Debug(sampleForm)

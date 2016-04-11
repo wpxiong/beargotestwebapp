@@ -31,7 +31,8 @@ func (this *IndexControl) Index(ctx *appcontext.AppContext,form interface{}){
      response := ctx.Writer.HttpResponseWriter
      var sess session.Session = session.NewSession(request , *response)
      log.Debug("Index Method")
-     if nil == sess.GetSessionValue("text") {
+     var sessionVal string
+     if !sess.GetSessionValue("text",&sessionVal) {
          sess.SaveSessionValue("test","xiongwenping")
      }
      log.Debug(indexform)
